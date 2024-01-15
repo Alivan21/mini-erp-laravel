@@ -18,11 +18,14 @@
       case '48':
           $width = 'w-48';
           break;
+      case '44':
+          $width = 'w-44';
+          break;
   }
 @endphp
 
-<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
-  <div @click="open = ! open">
+<div class="relative m-auto" x-data="{ open: false }" @mouseover="open = true" @mouseleave="open = false">
+  <div>
     {{ $trigger }}
   </div>
 
@@ -32,7 +35,7 @@
     x-transition:leave-start="transform opacity-100 scale-100"
     x-transition:leave-end="transform opacity-0 scale-95"
     class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}"
-    style="display: none;" @click="open = false">
+    style="display: none;">
     <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
       {{ $content }}
     </div>

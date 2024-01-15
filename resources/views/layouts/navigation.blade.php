@@ -15,6 +15,36 @@
           <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             {{ __('Dashboard') }}
           </x-nav-link>
+          <x-dropdown-nav id="inventory" active="inventory*">
+            <x-slot name="trigger">
+              Inventory
+            </x-slot>
+            <x-slot name="content">
+              <x-dropdown-link :href="route('inventory.index')">
+                {{ __('Dashboard') }}
+              </x-dropdown-link>
+            </x-slot>
+          </x-dropdown-nav>
+          <x-dropdown-nav id="Production" active="production*">
+            <x-slot name="trigger">
+              Production
+            </x-slot>
+            <x-slot name="content">
+              <x-dropdown-link :href="route('production.index')">
+                {{ __('Dashboard') }}
+              </x-dropdown-link>
+            </x-slot>
+          </x-dropdown-nav>
+          <x-dropdown-nav id="sales" active="sales*">
+            <x-slot name="trigger">
+              Sales
+            </x-slot>
+            <x-slot name="content">
+              <x-dropdown-link :href="route('sales.index')">
+                {{ __('Dashboard') }}
+              </x-dropdown-link>
+            </x-slot>
+          </x-dropdown-nav>
         </div>
       </div>
 
@@ -76,6 +106,36 @@
       <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
         {{ __('Dashboard') }}
       </x-responsive-nav-link>
+      <x-responsive-dropdown-nav id="inventory2" active="inventory*">
+        <x-slot name="trigger">
+          Inventory
+        </x-slot>
+        <x-slot name="content">
+          <x-dropdown-link :href="route('inventory.index')">
+            {{ __('Dashboard') }}
+          </x-dropdown-link>
+        </x-slot>
+      </x-responsive-dropdown-nav>
+      <x-responsive-dropdown-nav id="Production2" active="production*">
+        <x-slot name="trigger">
+          Production
+        </x-slot>
+        <x-slot name="content">
+          <x-dropdown-link :href="route('production.index')">
+            {{ __('Dashboard') }}
+          </x-dropdown-link>
+        </x-slot>
+      </x-responsive-dropdown-nav>
+      <x-responsive-dropdown-nav id="sales2" active="sales*">
+        <x-slot name="trigger">
+          Sales
+        </x-slot>
+        <x-slot name="content">
+          <x-dropdown-link :href="route('sales.index')">
+            {{ __('Dashboard') }}
+          </x-dropdown-link>
+        </x-slot>
+      </x-responsive-dropdown-nav>
     </div>
 
     <!-- Responsive Settings Options -->

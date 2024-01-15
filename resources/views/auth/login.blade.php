@@ -23,6 +23,15 @@
       <x-input-error :messages="$errors->get('password')" class="mt-2" />
     </div>
 
+    <div class="block mt-2">
+      @if (Route::has('password.request'))
+        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          href="{{ route('password.request') }}">
+          {{ __('Forgot your password?') }}
+        </a>
+      @endif
+    </div>
+
     <!-- Remember Me -->
     <div class="block mt-4">
       <label for="remember_me" class="inline-flex items-center">
@@ -32,17 +41,19 @@
       </label>
     </div>
 
-    <div class="flex items-center justify-end mt-4">
-      @if (Route::has('password.request'))
-        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          href="{{ route('password.request') }}">
-          {{ __('Forgot your password?') }}
-        </a>
-      @endif
-
-      <x-primary-button class="ml-3">
-        {{ __('Log in') }}
-      </x-primary-button>
+    <div class="flex w-full mt-4">
+      <button type="submit"
+        class="text-white w-full bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5">
+        Login
+      </button>
     </div>
+
+    <span class="flex items-center justify-center mt-4">
+      Don't have an account?
+      <a href="{{ route('register') }}"
+        class="underline ms-1 text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Register
+      </a>
+    </span>
   </form>
 </x-guest-layout>
