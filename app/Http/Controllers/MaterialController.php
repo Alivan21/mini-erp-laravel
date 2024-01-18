@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Material;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MaterialController extends Controller
 {
@@ -14,7 +15,10 @@ class MaterialController extends Controller
    */
   public function index()
   {
-    //
+
+    $materials = Material::query() // Start with a Query Builder instance
+      ->paginate(10);          // Paginate the query
+    return view('inventory.material.index', compact('materials'));
   }
 
   /**
@@ -24,7 +28,7 @@ class MaterialController extends Controller
    */
   public function create()
   {
-    //
+    return view("inventory.material.create");
   }
 
   /**
@@ -35,7 +39,17 @@ class MaterialController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $request->validate(
+      [
+        'name' => 'required',
+        'description' => 'required',
+      ]
+    );
+
+    $material = new Material($request->all());
+    $material->save();
+    Alert::toast('Bahan baku berhasil ditambahkan', 'success');
+    return redirect()->route('inventory.material.index');
   }
 
   /**
@@ -57,7 +71,7 @@ class MaterialController extends Controller
    */
   public function edit(Material $material)
   {
-    //
+    return view("inventory.material.edit", compact("material"));
   }
 
   /**
@@ -69,7 +83,16 @@ class MaterialController extends Controller
    */
   public function update(Request $request, Material $material)
   {
-    //
+    $request->validate(
+      [
+        'name' => 'required',
+        'description' => 'required',
+      ]
+    );
+
+    $material->update($request->all());
+    Alert::toast('Bahan baku berhasil diubah', 'success');
+    return redirect()->route('inventory.material.index');
   }
 
   /**
@@ -80,6 +103,9 @@ class MaterialController extends Controller
    */
   public function destroy(Material $material)
   {
-    //
+
+    $material->delete();
+    Alert::toast('Bahan baku berhasil dihapus', 'success');
+    return back();
   }
 }

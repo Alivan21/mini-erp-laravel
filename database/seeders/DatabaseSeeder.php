@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
         'password' => bcrypt('password'),
       ],
     );
+
+    $this->call([
+      MaterialSeeder::class,
+    ]);
   }
 }
