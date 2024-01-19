@@ -39,17 +39,20 @@ class MaterialController extends Controller
    */
   public function store(Request $request)
   {
-    $request->validate(
-      [
-        'name' => 'required',
-        'description' => 'required',
-      ]
-    );
+    $request->validate([
+      'name' => 'required',
+      'description' => 'required',
+    ]);
 
-    $material = new Material($request->all());
-    $material->save();
-    Alert::toast('Bahan baku berhasil ditambahkan', 'success');
-    return redirect()->route('inventory.material.index');
+    try {
+      Material::create($request->all());
+      Alert::toast('Bahan baku berhasil ditambahkan', 'success');
+      return redirect()->route('inventory.material.index');
+    } catch (\Exception $e) {
+      // Handle any unexpected errors
+      Alert::error('Terjadi kesalahan, silakan coba lagi', 'Bahan Baku telah ditambahkan sebelumnya');
+      return back()->withInput();  // Preserve input values
+    }
   }
 
   /**

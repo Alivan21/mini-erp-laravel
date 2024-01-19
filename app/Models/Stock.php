@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class Stock extends Model
 {
   use HasFactory;
 
@@ -13,8 +13,8 @@ class Material extends Model
     'id',
   ];
 
-  public function stock()
+  public function material()
   {
-    return $this->hasMany(Stock::class);
+    return $this->belongsTo(Material::class);
   }
 }

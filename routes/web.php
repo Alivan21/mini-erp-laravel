@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,13 @@ Route::middleware('auth')->group(function () {
   Route::get("inventory/material/{material}/edit", [MaterialController::class, 'edit'])->name("inventory.material.edit");
   Route::patch("inventory/material/{material}", [MaterialController::class, 'update'])->name("inventory.material.update");
   Route::delete("inventory/material/{material}", [MaterialController::class, 'destroy'])->name("inventory.material.destroy");
+
+  Route::get("inventory/stock", [StockController::class, 'index'])->name("inventory.stock.index");
+  Route::get("inventory/stock/create", [StockController::class, 'create'])->name("inventory.stock.create");
+  Route::post("inventory/stock", [StockController::class, 'store'])->name("inventory.stock.store");
+  Route::get("inventory/stock/{stock}/edit", [StockController::class, 'edit'])->name("inventory.stock.edit");
+  Route::patch("inventory/stock/{stock}", [StockController::class, 'update'])->name("inventory.stock.update");
+  Route::delete("inventory/stock/{stock}", [StockController::class, 'destroy'])->name("inventory.stock.destroy");
 
   Route::get("production", function () {
     return view("production.dashboard");

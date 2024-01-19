@@ -6,7 +6,7 @@
         <!-- Logo -->
         <div class="flex shrink-0 items-center">
           <a href="{{ route('dashboard') }}">
-            <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="block h-10 w-auto" />
           </a>
         </div>
 
@@ -20,6 +20,9 @@
             <x-slot name="content">
               <x-dropdown-link :href="route('inventory.material.index')">
                 {{ __('Bahan Baku') }}
+              </x-dropdown-link>
+              <x-dropdown-link :href="route('inventory.stock.index')">
+                {{ __('Stok') }}
               </x-dropdown-link>
             </x-slot>
           </x-dropdown-nav>
@@ -105,6 +108,9 @@
         <x-slot name="content">
           <x-dropdown-link :href="route('inventory.material.index')">
             {{ __('Bahan Baku') }}
+          </x-dropdown-link>
+          <x-dropdown-link :href="route('inventory.stock.index')">
+            {{ __('Stok') }}
           </x-dropdown-link>
         </x-slot>
       </x-responsive-dropdown-nav>
