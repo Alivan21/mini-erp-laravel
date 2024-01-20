@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
@@ -35,9 +36,12 @@ Route::middleware('auth')->group(function () {
   Route::patch("inventory/stock/{stock}", [StockController::class, 'update'])->name("inventory.stock.update");
   Route::delete("inventory/stock/{stock}", [StockController::class, 'destroy'])->name("inventory.stock.destroy");
 
-  Route::get("production", function () {
-    return view("production.dashboard");
-  })->name("production.index");
+  Route::get("production/employee", [EmployeeController::class, 'index'])->name("production.employee.index");
+  Route::get("production/employee/create", [EmployeeController::class, 'create'])->name("production.employee.create");
+  Route::post("production/employee", [EmployeeController::class, 'store'])->name("production.employee.store");
+  Route::get("production/employee/{employee}/edit", [EmployeeController::class, 'edit'])->name("production.employee.edit");
+  Route::patch("production/employee/{employee}", [EmployeeController::class, 'update'])->name("production.employee.update");
+  Route::delete("production/employee/{employee}", [EmployeeController::class, 'destroy'])->name("production.employee.destroy");
 
   Route::get("sales", function () {
     return view("sales.dashboard");

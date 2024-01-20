@@ -29,8 +29,8 @@
           <x-dropdown-nav id="Production" active="production*">
             <x-slot name="trigger">Produksi</x-slot>
             <x-slot name="content">
-              <x-dropdown-link :href="route('production.index')">
-                {{ __('Dashboard') }}
+              <x-dropdown-link :href="route('production.employee.index')">
+                {{ __('Pegawai') }}
               </x-dropdown-link>
             </x-slot>
           </x-dropdown-nav>
@@ -117,8 +117,8 @@
       <x-responsive-dropdown-nav id="Production2" active="production*">
         <x-slot name="trigger">Produksi</x-slot>
         <x-slot name="content">
-          <x-dropdown-link :href="route('production.index')">
-            {{ __('Dashboard') }}
+          <x-dropdown-link :href="route('production.employee.index')">
+            {{ __('Pegawai') }}
           </x-dropdown-link>
         </x-slot>
       </x-responsive-dropdown-nav>
