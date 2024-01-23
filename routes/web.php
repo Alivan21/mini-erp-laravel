@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
@@ -54,6 +55,13 @@ Route::middleware('auth')->group(function () {
   Route::get("sales", function () {
     return view("sales.dashboard");
   })->name("sales.index");
+
+  Route::get("sales/customer", [CustomerController::class, 'index'])->name("sales.customer.index");
+  Route::get("sales/customer/create", [CustomerController::class, 'create'])->name("sales.customer.create");
+  Route::post("sales/customer", [CustomerController::class, 'store'])->name("sales.customer.store");
+  Route::get("sales/customer/{customer}/edit", [CustomerController::class, 'edit'])->name("sales.customer.edit");
+  Route::patch("sales/customer/{customer}", [CustomerController::class, 'update'])->name("sales.customer.update");
+  Route::delete("sales/customer/{customer}", [CustomerController::class, 'destroy'])->name("sales.customer.destroy");
 
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
