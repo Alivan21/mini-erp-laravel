@@ -77,6 +77,14 @@
               @endforeach
             </tbody>
           </table>
+          <nav class="flex items-center justify-between p-4 border-t" aria-label="Table navigation">
+            <span class="text-sm font-normal text-gray-500">
+              Showing <span class="font-semibold text-gray-900">{{ $customers->firstItem() }}</span>
+              - <span class="font-semibold text-gray-900">{{ $customers->lastItem() }}</span>
+              of <span class="font-semibold text-gray-900">{{ $customers->total() }}</span>
+            </span>
+            {{ $customers->links() }}
+          </nav>
         </div>
       </div>
     </div>

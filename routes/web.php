@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,9 +53,12 @@ Route::middleware('auth')->group(function () {
   Route::patch("production/product/{product}", [ProductController::class, 'update'])->name("production.product.update");
   Route::delete("production/product/{product}", [ProductController::class, 'destroy'])->name("production.product.destroy");
 
-  Route::get("sales", function () {
-    return view("sales.dashboard");
-  })->name("sales.index");
+  Route::get("sales", [SalesController::class, 'index'])->name("sales.index");
+  Route::get("sales/create", [SalesController::class, 'create'])->name("sales.create");
+  Route::post("sales", [SalesController::class, 'store'])->name("sales.store");
+  Route::get("sales/{sales}/edit", [SalesController::class, 'edit'])->name("sales.edit");
+  Route::patch("sales/{sales}", [SalesController::class, 'update'])->name("sales.update");
+  Route::delete("sales/{sales}", [SalesController::class, 'destroy'])->name("sales.destroy");
 
   Route::get("sales/customer", [CustomerController::class, 'index'])->name("sales.customer.index");
   Route::get("sales/customer/create", [CustomerController::class, 'create'])->name("sales.customer.create");

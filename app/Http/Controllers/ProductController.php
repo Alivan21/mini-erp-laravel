@@ -15,12 +15,16 @@ class ProductController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
-    $materials = Material::all();
-    $products = Product::query()->with('material')->orderby('date', 'desc')->paginate(10);
+    $month = $request->query('month', null); // Get month from query string, default to null
 
-    return view('production.product.index', compact('materials', 'products'));
+    $materials = Material::all();
+    $products = Product::query()->with('material')->orderby('date', 'desc')->when($month, function ($query, $month) {
+      $query->whereMonth('date', $month); // Apply month filter only if a month is provided
+    })->paginate(10);
+
+    return view('production.product.index', compact('materials', 'products', 'month'));
   }
 
   /**

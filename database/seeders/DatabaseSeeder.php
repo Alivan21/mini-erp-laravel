@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
       EmployeeSeeder::class,
       ProductSeeder::class,
       CustomerSeeder::class,
+      SalesSeeder::class,
     ]);
   }
 }
