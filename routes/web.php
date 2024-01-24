@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
@@ -21,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-  Route::get('/', function () {
-    return view('dashboard');
-  })->name('dashboard');
+  Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
   Route::get("inventory", [MaterialController::class, 'index'])->name("inventory.material.index");
   Route::get("inventory/material/create", [MaterialController::class, 'create'])->name("inventory.material.create");
