@@ -58,9 +58,18 @@ class SalesController extends Controller
     ]);
 
     try {
-      Sales::create($request->all());
-      Alert::toast('Data Penjualan Berhasil Ditambahkan.', 'success');
-      return redirect()->route('sales.index')->with('success', 'Sales created successfully.');
+      $quantity = $request->input('quantity');
+      $product_stock = Product::find($request->input('product_id'))->stock;
+      if ($quantity > $product_stock) {
+        Alert::toast('Stok Produk Tidak Mencukupi.', 'error');
+        return back();
+      } else {
+        $product_stock = $product_stock - $quantity;
+        Product::find($request->input('product_id'))->update(['stock' => $product_stock]);
+        Sales::create($request->all());
+        Alert::toast('Data Penjualan Berhasil Ditambahkan.', 'success');
+        return redirect()->route('sales.index')->with('success', 'Sales created successfully.');
+      }
     } catch (\Throwable $th) {
       Alert::toast($th->getMessage(), 'error');
       return back();
