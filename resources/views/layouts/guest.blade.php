@@ -1,39 +1,34 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <title>{{ config("app.name", "Laravel") }}</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net" />
-    <link
-      href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap"
-      rel="stylesheet"
-    />
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    @vite(["resources/css/app.css", "resources/js/app.js"])
-  </head>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.bunny.net" />
+  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-  <body class="font-sans text-gray-900 antialiased">
-    <div
-      class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0"
-    >
-      <div>
-        <a href="/">
-          <x-application-logo class="h-20 w-20 fill-current text-gray-500" />
-        </a>
-      </div>
+  <!-- Scripts -->
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
 
-      <div
-        class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg"
-      >
-        {{ $slot }}
-      </div>
+<body class="font-sans text-gray-900 antialiased">
+  <div class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
+    <div class="flex shrink-0 items-center">
+      <a href="{{ route('dashboard') }}">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="block h-20 w-auto" />
+      </a>
     </div>
-    @include("sweetalert::alert")
-  </body>
+
+    <div class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
+      {{ $slot }}
+    </div>
+  </div>
+  @include('sweetalert::alert')
+</body>
+
 </html>
