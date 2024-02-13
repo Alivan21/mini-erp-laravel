@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -110,5 +111,12 @@ class MaterialController extends Controller
     $material->delete();
     Alert::toast('Bahan baku berhasil dihapus', 'success');
     return back();
+  }
+
+  public function print_pdf()
+  {
+    $materials = Material::all();
+    $pdf = PDF::loadView('inventory.material.pdf', compact('materials'));
+    return $pdf->stream('material.pdf');
   }
 }

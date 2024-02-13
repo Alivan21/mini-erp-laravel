@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardInventoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
@@ -25,6 +26,8 @@ Route::middleware('auth')->group(function () {
   Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
   Route::get("inventory", [MaterialController::class, 'index'])->name("inventory.material.index");
+  Route::get("inventory/material/print_pdf", [MaterialController::class, 'print_pdf'])->name("inventory.material.print_pdf");
+  Route::get("inventory/dashboard", [DashboardInventoryController::class, 'index'])->name('inventory.dashboard');
   Route::get("inventory/material/create", [MaterialController::class, 'create'])->name("inventory.material.create");
   Route::post("inventory/material", [MaterialController::class, 'store'])->name("inventory.material.store");
   Route::get("inventory/material/{material}/edit", [MaterialController::class, 'edit'])->name("inventory.material.edit");
@@ -46,6 +49,7 @@ Route::middleware('auth')->group(function () {
   Route::delete("production/employee/{employee}", [EmployeeController::class, 'destroy'])->name("production.employee.destroy");
 
   Route::get("production/product", [ProductController::class, 'index'])->name("production.product.index");
+  Route::get("production/product/print_pdf", [ProductController::class, 'print_pdf'])->name("production.product.print_pdf");
   Route::get("production/product/create", [ProductController::class, 'create'])->name("production.product.create");
   Route::post("production/product", [ProductController::class, 'store'])->name("production.product.store");
   Route::get("production/product/{product}/edit", [ProductController::class, 'edit'])->name("production.product.edit");
@@ -53,6 +57,7 @@ Route::middleware('auth')->group(function () {
   Route::delete("production/product/{product}", [ProductController::class, 'destroy'])->name("production.product.destroy");
 
   Route::get("sales", [SalesController::class, 'index'])->name("sales.index");
+  Route::get("sales/print_pdf", [SalesController::class, 'print_pdf'])->name("sales.print_pdf");
   Route::get("sales/create", [SalesController::class, 'create'])->name("sales.create");
   Route::post("sales", [SalesController::class, 'store'])->name("sales.store");
   Route::get("sales/{sales}/edit", [SalesController::class, 'edit'])->name("sales.edit");

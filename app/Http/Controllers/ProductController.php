@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Material;
 use App\Models\Product;
 use App\Models\Stock;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -167,5 +168,13 @@ class ProductController extends Controller
     $product->delete();
     Alert::toast('Stok berhasil dihapus', 'success');
     return back();
+  }
+
+  public function print_pdf()
+  {
+    $materials = Material::all();
+    $products = Product::query()->with('material')->orderby('date', 'desc')->get();
+    $pdf = Pdf::loadView('production.product.pdf', compact('materials', 'products'));
+    return $pdf->stream('product.pdf');
   }
 }

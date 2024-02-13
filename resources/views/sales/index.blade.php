@@ -1,8 +1,17 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="text-xl font-semibold leading-tight text-gray-800">
-      {{ __('Data Penjualan') }}
-    </h2>
+    <div class="flex justify-between items-center">
+      <h2 class="text-xl font-semibold leading-tight text-gray-800">
+        {{ __('Data Penjualan') }}
+      </h2>
+      <a href="{{ route('sales.print_pdf') }}" class="no-underline">
+        <button type="button"
+          class="focus:shadow-outline-blue inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out hover:bg-indigo-500 focus:border-blue-700 focus:outline-none active:bg-blue-700">
+          <i class="fa-solid fa-file-pdf -ml-1 mr-2 text-lg"></i>
+          <span>Export PDF</span>
+        </button>
+      </a>
+    </div>
   </x-slot>
 
   <div class="py-12">

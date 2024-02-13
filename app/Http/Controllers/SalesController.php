@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Sales;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -139,5 +140,14 @@ class SalesController extends Controller
     $sales->delete();
     Alert::toast('Data Penjualan Berhasil Dihapus.', 'success');
     return back();
+  }
+
+  public function print_pdf()
+  {
+    $products = Product::all();
+    $customers = Customer::all();
+    $sales = Sales::query()->with('product', 'customer')->orderby('date', 'desc')->get();
+    $pdf = Pdf::loadview('sales.pdf', compact('sales'));
+    return $pdf->stream('sales.pdf');
   }
 }

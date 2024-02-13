@@ -18,6 +18,9 @@
           <x-dropdown-nav id="inventory" active="inventory*">
             <x-slot name="trigger">Inventory</x-slot>
             <x-slot name="content">
+              <x-dropdown-link :href="route('inventory.dashboard')">
+                {{ __('Dashboard') }}
+              </x-dropdown-link>
               <x-dropdown-link :href="route('inventory.material.index')">
                 {{ __('Bahan Baku') }}
               </x-dropdown-link>
